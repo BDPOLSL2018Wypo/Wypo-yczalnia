@@ -175,7 +175,7 @@ namespace Kasety
 
         public List<Cassette> getList()
         {
-            string query = "SELECT K.IdKasety,K.Dostepnosc,T.Tytul,T.Cena FROM Kasety K INNER JOIN Tytuly T ON K.IdTytulu=T.IdTytulu;";
+            string query = "SELECT K.IdKasety,K.Dostepnosc,T.Tytul,T.Cena,T.KategoriaWiekowa,G.Gatunek,R.Imie,R.Nazwisko FROM Kasety K, Tytuly T, Gatunki G, Rezyserzy R WHERE K.IdTytulu=T.IdTytulu AND T.IdGatunku=G.IdGatunku AND T.IdRezysera=R.IdRezysera;";
             List<Cassette> lista = new List<Cassette>();
             SQLiteCommand command = new SQLiteCommand(query, con);
             SQLiteDataReader reader = command.ExecuteReader();
@@ -184,11 +184,15 @@ namespace Kasety
                 int id;
                 Int32.TryParse(reader["IdKasety"].ToString(), out id);
                 string title = reader["Tytul"].ToString();
+                string genre = reader["Gatunek"].ToString() ;
+                string director = reader["Imie"].ToString()+' '+reader["Nazwisko"].ToString();
+                int age;
+                Int32.TryParse(reader["KategoriaWiekowa"].ToString(), out age) ;
                 int price;
                 Int32.TryParse(reader["Cena"].ToString(), out price);
                 bool av;
                 bool.TryParse(reader["Dostepnosc"].ToString(), out av);
-                Cassette cas = new Cassette(id, title, price, av);
+                Cassette cas = new Cassette(id, title, genre, director, age, price, av);
                 lista.Add(cas);
             }
             return lista;

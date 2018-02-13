@@ -16,12 +16,14 @@ namespace Kasety
         public FormListaKaset()
         {
             InitializeComponent();
+            
+            Lista.Width = this.Size.Width;
+            Lista.Height = this.Height;
+           
             DB db = new DB();
             List<Cassette> lista = db.getList();
-            Cassette[] tab = lista.ToArray<Cassette>();
-
-            //Tabela.DataSource = tab;
-            dataGridView1.DataSource = tab;
+            Lista.DataSource = lista;
+            
 
             int i = 1;
         }

@@ -8,22 +8,22 @@ namespace Kasety
 {
     class Cassette
     {
-        int ID { get; set; }
-        string title { get; set; }
-        //string genre;
-        //string director;
-        //int agecat;
-        int price { get; set; }
-        bool available { get; set; }
-        public Cassette(int id,string t, int p, bool ava)
+        public int ID { get; set; }
+        public string Tytul { get; set; }
+        public string Gatunek { get; set; }
+        public string Rezyser { get; set; }
+        public int KategoriaWiekowa { get; set; }
+        public int Cena { get; set; }
+        public bool Dostepnosc { get; set; }
+        public Cassette(int id,string t,string g,string d,int age, int p, bool ava)
         {
             ID = id;
-            title = t;
-           // genre = g;
-            //director = d;
-            //agecat = age;
-            price = p;
-            available = ava;
+            Tytul = t;
+            Gatunek = g;
+            Rezyser = d;
+            KategoriaWiekowa = age;
+            Cena = p;
+            Dostepnosc = ava;
         }
     }
 }
