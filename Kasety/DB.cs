@@ -145,6 +145,55 @@ namespace Kasety
             command.ExecuteNonQuery();
         }
 
+        public bool InsertCassette(string title, string genre,string name, string lname, int agecat, int price)
+        {
+            int idTitle = -1;
+            string query = "SELECT * FROM Tytuly";
+            SQLiteCommand command = new SQLiteCommand(query, con);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                if (reader["Tytul"].ToString().Equals(title)) Int32.TryParse(reader["IdTytulu"].ToString(), out idTitle);
+            }
+            if (idTitle.Equals(-1))
+            {
+                insertTitle(title, genre, name, lname, agecat, price);
+                query = "SELECT IdTytulu FROM Tytuly WHERE Tytul='" + title + "';";
+                command = new SQLiteCommand(query, con);
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Int32.TryParse(reader["IdTytulu"].ToString(), out idTitle);
+                }
+            }
+            query = "INSERT INTO Kasety (IdTytulu, Dostepnosc) VALUES (" + idTitle + ", 1);";
+            command = new SQLiteCommand(query, con);
+            command.ExecuteNonQuery();
+            //insert kasety;
+            return true;
+        }
+
+        public List<Cassette> getList()
+        {
+            string query = "SELECT K.IdKasety,K.Dostepnosc,T.Tytul,T.Cena FROM Kasety K INNER JOIN Tytuly T ON K.IdTytulu=T.IdTytulu;";
+            List<Cassette> lista = new List<Cassette>();
+            SQLiteCommand command = new SQLiteCommand(query, con);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int id;
+                Int32.TryParse(reader["IdKasety"].ToString(), out id);
+                string title = reader["Tytul"].ToString();
+                int price;
+                Int32.TryParse(reader["Cena"].ToString(), out price);
+                bool av;
+                bool.TryParse(reader["Dostepnosc"].ToString(), out av);
+                Cassette cas = new Cassette(id, title, price, av);
+                lista.Add(cas);
+            }
+            return lista;
+        }
+
        
 
 

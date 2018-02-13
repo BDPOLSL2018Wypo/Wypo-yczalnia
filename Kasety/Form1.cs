@@ -24,5 +24,23 @@ namespace Kasety
             db.insertTitle("tytul2", "gatunek2", "Imie2", "Nazwisko2", 18, 20);
             db.insertTitle("tytul3", "gatunek", "Imie", "Nazwisko", 18, 20);
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormDodajKasete form2 = new FormDodajKasete();
+            form2.ShowDialog();
+            form2.Dispose();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FormListaKaset form3 = new FormListaKaset();
+            form3.ShowDialog();
+        }
     }
 }
