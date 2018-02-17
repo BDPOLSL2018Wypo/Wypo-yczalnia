@@ -197,10 +197,34 @@ namespace Kasety
             }
             return lista;
         }
+        
+        public bool OdpierdolWypozyczenie(int IdPracownikaWypozyczajacego,
+                                          int IdKlienta,
+                                          List<string> Kasety)
+        {
+            DateTime now = new DateTime();
+            int IdListy=0;
+            string query = "SELECT MAX(IdWypozyczenia) FROM ListaKasetWypozyczenia";
+            SQLiteCommand command = new SQLiteCommand(query, con);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Int32.TryParse(reader["IdWypozyczenia"].ToString(), out IdListy);
+            }
+            IdListy++;
+            foreach (string Kaseta in Kasety)
+            {
+                query = "INSERT INTO ListaKasetWypozyczenia (IdWypozyczenia, IdKasety) VALUES ('" + IdListy.ToString() +"','"+ Kaseta +"'";
+            }
+            query = "INSERT INTO Wypozyczenia (IdPracownikaWypozyczajacego, IdPracownikaPrzyjmujacego, IdKlienta, IdLista, Data) VALUES ('"+IdPracownikaWypozyczajacego.ToString()+"', 'empty'," +
+                    "'"+IdListy.ToString()+"')";
+            
 
-       
+            return true;
+        }
 
-
-
+        //"Wypozyczenia(IdWypozyczenia INTEGER PRIMARY KEY, IdPracownikaWypozyczajacego INT(32), IdPracownikaPrzymujacego INT(32), IdKlienta INT(32), IdLista INT(32), Data DATETIME)";
+        //DataUrodzenia.ToString("yyyy-MM-dd")
+        //  query = "CREATE TABLE IF NOT EXISTS ListaKasetWypozyczenia(IdWypozyczenia INTEGER PRIMARY KEY, IdKasety INT(32))";
     }
 }
