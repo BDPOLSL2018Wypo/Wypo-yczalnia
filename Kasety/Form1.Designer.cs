@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.AddCassette = new System.Windows.Forms.Button();
+            this.AddUser = new System.Windows.Forms.Button();
+            this.List = new System.Windows.Forms.Button();
+            this.Users = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -43,43 +44,54 @@
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // button1
+            // AddCassette
             // 
-            this.button1.Location = new System.Drawing.Point(140, 30);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(114, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Dodaj kasete";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.AddCassette.Location = new System.Drawing.Point(140, 30);
+            this.AddCassette.Name = "AddCassette";
+            this.AddCassette.Size = new System.Drawing.Size(114, 23);
+            this.AddCassette.TabIndex = 1;
+            this.AddCassette.Text = "Dodaj kasete";
+            this.AddCassette.UseVisualStyleBackColor = true;
+            this.AddCassette.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // AddUser
             // 
-            this.button2.Location = new System.Drawing.Point(140, 60);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(114, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Dodaj użytkownika";
-            this.button2.UseVisualStyleBackColor = true;
+            this.AddUser.Location = new System.Drawing.Point(140, 88);
+            this.AddUser.Name = "AddUser";
+            this.AddUser.Size = new System.Drawing.Size(114, 23);
+            this.AddUser.TabIndex = 2;
+            this.AddUser.Text = "Dodaj użytkownika";
+            this.AddUser.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // List
             // 
-            this.button3.Location = new System.Drawing.Point(140, 90);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(114, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Wyświetl kasety";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.List.Location = new System.Drawing.Point(140, 118);
+            this.List.Name = "List";
+            this.List.Size = new System.Drawing.Size(114, 23);
+            this.List.TabIndex = 3;
+            this.List.Text = "Wyświetl kasety";
+            this.List.UseVisualStyleBackColor = true;
+            this.List.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // Users
+            // 
+            this.Users.Location = new System.Drawing.Point(140, 59);
+            this.Users.Name = "Users";
+            this.Users.Size = new System.Drawing.Size(114, 23);
+            this.Users.TabIndex = 4;
+            this.Users.Text = "Lista użytkowników";
+            this.Users.UseVisualStyleBackColor = true;
+            this.Users.Click += new System.EventHandler(this.Users_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(300, 307);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Users);
+            this.Controls.Add(this.List);
+            this.Controls.Add(this.AddUser);
+            this.Controls.Add(this.AddCassette);
             this.Controls.Add(this.textBox1);
             this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "Form1";
@@ -92,9 +104,10 @@
         #endregion
 
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button AddCassette;
+        private System.Windows.Forms.Button AddUser;
+        private System.Windows.Forms.Button List;
+        private System.Windows.Forms.Button Users;
     }
 }
 

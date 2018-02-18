@@ -25,7 +25,32 @@ namespace Kasety
             Lista.DataSource = lista;
             
 
-            int i = 1;
+            
+        }
+
+        private void Finder_Click(object sender, EventArgs e)
+        {
+            DB db = new DB();
+            if (title.Text.Length != 0)
+            {
+                string tytul = title.Text;
+                
+                List<Cassette> lista = db.getList(tytul);
+                Lista.DataSource = lista;
+            }
+            else
+            {
+                List<Cassette> lista = db.getList();
+                Lista.DataSource = lista;
+            }
+        }
+
+        private void Reset_Click(object sender, EventArgs e)
+        {
+            DB db = new DB();
+            title.Text = "";
+            List<Cassette> lista = db.getList();
+            Lista.DataSource = lista;
         }
     }
 }

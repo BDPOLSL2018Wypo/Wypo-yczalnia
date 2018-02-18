@@ -37,3 +37,4 @@ C:\Users\Dominik\source\wypo\Kasety\obj\Debug\Kasety.exe
 C:\Users\Dominik\source\wypo\Kasety\obj\Debug\Kasety.pdb
 C:\Users\Dominik\source\wypo\Kasety\obj\Debug\Kasety.FormDodajKasete.resources
 C:\Users\Dominik\source\wypo\Kasety\obj\Debug\Kasety.FormListaKaset.resources
+C:\Users\Dominik\source\wypo\Kasety\obj\Debug\Kasety.UserList.resources

@@ -42,5 +42,11 @@ namespace Kasety
             FormListaKaset form3 = new FormListaKaset();
             form3.ShowDialog();
         }
+
+        private void Users_Click(object sender, EventArgs e)
+        {
+            UserList form = new UserList();
+            form.ShowDialog();
+        }
     }
 }

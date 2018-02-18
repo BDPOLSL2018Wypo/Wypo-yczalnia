@@ -96,6 +96,28 @@ namespace Kasety
             }
             return person;
         }
+        public List<Person> retriveUser()
+        {
+            List<Person> list = new List<Person>();
+            string query = "SELECT * FROM OSOBY";
+            SQLiteCommand command = new SQLiteCommand(query, con);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Person person = new Person();
+                person.SetName(reader["Imie"].ToString());
+                person.SetSurrname(reader["Nazwisko"].ToString());
+                person.SetAddress(reader["Adres"].ToString());
+                person.SetStreet(reader["Ulica"].ToString());
+                person.SetZipCode(reader["KodPocztowy"].ToString());
+                person.SetPhoneNumber(reader["nrTel"].ToString());
+                person.SetEmail(reader["Email"].ToString());
+                person.SetRole(reader["Rola"].ToString());
+                person.SetBirthDate(DateTime.Parse(reader["DataUrodzenia"].ToString()));
+                list.Add(person);
+            }
+            return list;
+        }
 
         public void insertTitle(string Title, string Gatunek, string RezyserImie, string RezyserNazwisko, int KategoriaWiekowa, int Cena)
         {
@@ -197,7 +219,31 @@ namespace Kasety
             }
             return lista;
         }
-        
+        public List<Cassette> getList(string tytul)
+        {
+            string query = "SELECT K.IdKasety,K.Dostepnosc,T.Tytul,T.Cena,T.KategoriaWiekowa,G.Gatunek,R.Imie,R.Nazwisko FROM Kasety K, Tytuly T, Gatunki G, Rezyserzy R WHERE K.IdTytulu=T.IdTytulu AND T.IdGatunku=G.IdGatunku AND T.IdRezysera=R.IdRezysera AND T.Tytul='"+tytul+"';";
+            List<Cassette> lista = new List<Cassette>();
+            SQLiteCommand command = new SQLiteCommand(query, con);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int id;
+                Int32.TryParse(reader["IdKasety"].ToString(), out id);
+                string title = reader["Tytul"].ToString();
+                string genre = reader["Gatunek"].ToString();
+                string director = reader["Imie"].ToString() + ' ' + reader["Nazwisko"].ToString();
+                int age;
+                Int32.TryParse(reader["KategoriaWiekowa"].ToString(), out age);
+                int price;
+                Int32.TryParse(reader["Cena"].ToString(), out price);
+                bool av;
+                bool.TryParse(reader["Dostepnosc"].ToString(), out av);
+                Cassette cas = new Cassette(id, title, genre, director, age, price, av);
+                lista.Add(cas);
+            }
+            return lista;
+        }
+
         public bool OdpierdolWypozyczenie(int IdPracownikaWypozyczajacego,
                                           int IdKlienta,
                                           List<string> Kasety)
@@ -222,6 +268,8 @@ namespace Kasety
 
             return true;
         }
+
+       
 
         //"Wypozyczenia(IdWypozyczenia INTEGER PRIMARY KEY, IdPracownikaWypozyczajacego INT(32), IdPracownikaPrzymujacego INT(32), IdKlienta INT(32), IdLista INT(32), Data DATETIME)";
         //DataUrodzenia.ToString("yyyy-MM-dd")
