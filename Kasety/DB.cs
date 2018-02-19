@@ -261,9 +261,14 @@ namespace Kasety
             foreach (string Kaseta in Kasety)
             {
                 query = "INSERT INTO ListaKasetWypozyczenia (IdWypozyczenia, IdKasety) VALUES ('" + IdListy.ToString() +"','"+ Kaseta +"'";
+                command = new SQLiteCommand(query, con);
+                command.ExecuteNonQuery();
+                query = "UPADETE TABLE Kasety SET Dostepnosc=0 WHERE IdKasety='"+Kaseta+"'";
             }
             query = "INSERT INTO Wypozyczenia (IdPracownikaWypozyczajacego, IdPracownikaPrzyjmujacego, IdKlienta, IdLista, Data) VALUES ('"+IdPracownikaWypozyczajacego.ToString()+"', 'empty'," +
                     "'"+IdListy.ToString()+"')";
+            command = new SQLiteCommand(query, con);
+            command.ExecuteNonQuery();
             
 
             return true;
