@@ -266,7 +266,7 @@ namespace Kasety
                 query = "UPADETE TABLE Kasety SET Dostepnosc=0 WHERE IdKasety='"+Kaseta+"'";
             }
             query = "INSERT INTO Wypozyczenia (IdPracownikaWypozyczajacego, IdPracownikaPrzyjmujacego, IdKlienta, IdLista, Data) VALUES ('"+IdPracownikaWypozyczajacego.ToString()+"', 'empty'," +
-                    "'"+IdListy.ToString()+"')";
+                    "'"+IdListy.ToString()+"', '"+IdKlienta.ToString()+"', '"+now.ToString("yyyy-MM-dd") + "')";
             command = new SQLiteCommand(query, con);
             command.ExecuteNonQuery();
             
@@ -274,10 +274,5 @@ namespace Kasety
             return true;
         }
 
-       
-
-        //"Wypozyczenia(IdWypozyczenia INTEGER PRIMARY KEY, IdPracownikaWypozyczajacego INT(32), IdPracownikaPrzymujacego INT(32), IdKlienta INT(32), IdLista INT(32), Data DATETIME)";
-        //DataUrodzenia.ToString("yyyy-MM-dd")
-        //  query = "CREATE TABLE IF NOT EXISTS ListaKasetWypozyczenia(IdWypozyczenia INTEGER PRIMARY KEY, IdKasety INT(32))";
     }
 }
