@@ -51,11 +51,11 @@ namespace Kasety
             command = new SQLiteCommand(query, con);
             command.ExecuteNonQuery();
 
-            query = "CREATE TABLE IF NOT EXISTS Wypozyczenia(IdWypozyczenia INTEGER PRIMARY KEY, IdPracownikaWypozyczajacego INT(32), IdPracownikaPrzymujacego INT(32), IdKlienta INT(32), IdLista INT(32), Data DATETIME)";
+            query = "CREATE TABLE IF NOT EXISTS Wypozyczenia(IdWypozyczenia INTEGER PRIMARY KEY, IdPracownikaWypozyczajacego INT(32), IdPracownikaPrzyjmujacego INT(32), IdKlienta INT(32), IdLista INT(32), Data DATETIME)";
             command = new SQLiteCommand(query, con);
             command.ExecuteNonQuery();
 
-            query = "CREATE TABLE IF NOT EXISTS ListaKasetWypozyczenia(IdWypozyczenia INTEGER PRIMARY KEY, IdKasety INT(32))";
+            query = "CREATE TABLE IF NOT EXISTS ListaKasetWypozyczenia(IdWypozyczenia INTEGER, IdKasety INT(32))";
             command = new SQLiteCommand(query, con);
             command.ExecuteNonQuery();
 
@@ -256,25 +256,28 @@ namespace Kasety
                                           int IdKlienta,
                                           List<string> Kasety)
         {
-            DateTime now = new DateTime();
-            int IdListy=0;
-            string query = "SELECT MAX(IdWypozyczenia) FROM ListaKasetWypozyczenia";
+            DateTime now = new DateTime(); now = DateTime.Now;
+            int IdListy=0, tmp = 0;
+            string query = "SELECT IdWypozyczenia FROM ListaKasetWypozyczenia";
             SQLiteCommand command = new SQLiteCommand(query, con);
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
+                if(!reader.HasRows) { IdListy = 1; break; }
                 Int32.TryParse(reader["IdWypozyczenia"].ToString(), out IdListy);
             }
             IdListy++;
             foreach (string Kaseta in Kasety)
             {
-                query = "INSERT INTO ListaKasetWypozyczenia (IdWypozyczenia, IdKasety) VALUES ('" + IdListy.ToString() +"','"+ Kaseta +"'";
+                query = "INSERT INTO ListaKasetWypozyczenia (IdWypozyczenia, IdKasety) VALUES ('" + IdListy.ToString() +"','"+ Kaseta +"')";
                 command = new SQLiteCommand(query, con);
                 command.ExecuteNonQuery();
-                query = "UPADETE TABLE Kasety SET Dostepnosc=0 WHERE IdKasety='"+Kaseta+"'";
+                query = "UPDATE Kasety SET Dostepnosc = 0 WHERE IdKasety='"+Kaseta+"'";
+                command = new SQLiteCommand(query, con);
+                command.ExecuteNonQuery();
             }
             query = "INSERT INTO Wypozyczenia (IdPracownikaWypozyczajacego, IdPracownikaPrzyjmujacego, IdKlienta, IdLista, Data) VALUES ('"+IdPracownikaWypozyczajacego.ToString()+"', 'empty'," +
-                    "'"+IdListy.ToString()+"', '"+IdKlienta.ToString()+"', '"+now.ToString("yyyy-MM-dd") + "')";
+                    "'"+IdKlienta.ToString()+"', '"+IdListy.ToString()+"', '"+now.ToString("yyyy-MM-dd") + "')";
             command = new SQLiteCommand(query, con);
             command.ExecuteNonQuery();
             return true;

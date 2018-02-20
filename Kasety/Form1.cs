@@ -26,6 +26,11 @@ namespace Kasety
             db.updateUser(1, "chuj", "dupa", new DateTime(), "kurwa", "cipa", "przejebane", "sladu", "to", "pedal");
 
             db.EscapeSQL("uuu drop uuu");
+            List<string> kasty=new List<string>(); kasty.Add("1"); kasty.Add("2");
+            db.OdpierdolWypozyczenie(1, 2, kasty);
+
+            List<string> kasty2 = new List<string>(); kasty2.Add("3"); kasty2.Add("4");
+            db.OdpierdolWypozyczenie(2, 3, kasty2);
 
         }
 
