@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
-
+using System.Text.RegularExpressions;
+using System.Media;
 /*
  * 
  * Dodawanie userów jest
@@ -297,6 +298,21 @@ namespace Kasety
         {
             con.Close();
             return 666.00073;
+        }
+
+        public bool EscapeSQL(string makesurethisshitaintaquery)
+        {
+            string s = makesurethisshitaintaquery;
+
+            string pat = "DROP TABLE|INSERT|DELETE|UPDATE TABLE|INNER JOIN|JOIN LEFT|JOIN RIGHT|SELECT|DROP DATABASE";
+            Regex r = new Regex(pat, RegexOptions.IgnoreCase);
+            Match match = r.Match(s);
+            if(match.Success)
+            {
+                SystemSounds.Beep.Play();
+                return true;
+            }
+            return false;
         }
 
     }

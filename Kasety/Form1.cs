@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Media;
 namespace Kasety
 {
     public partial class Form1 : Form
@@ -24,6 +24,9 @@ namespace Kasety
             db.insertTitle("tytul2", "gatunek2", "Imie2", "Nazwisko2", 18, 20);
             db.insertTitle("tytul3", "gatunek", "Imie", "Nazwisko", 18, 20);
             db.updateUser(1, "chuj", "dupa", new DateTime(), "kurwa", "cipa", "przejebane", "sladu", "to", "pedal");
+
+            db.EscapeSQL("uuu drop uuu");
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
