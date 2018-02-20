@@ -304,7 +304,7 @@ namespace Kasety
         {
             string s = makesurethisshitaintaquery;
 
-            string pat = "DROP TABLE|INSERT|DELETE|UPDATE TABLE|INNER JOIN|JOIN LEFT|JOIN RIGHT|SELECT|DROP DATABASE";
+            string pat = "DROP TABLE|INSERT|DELETE|UPDATE TABLE|INNER JOIN|JOIN LEFT|JOIN RIGHT|SELECT|DROP DATABASE|;|--| --| ==| -- |.--.";
             Regex r = new Regex(pat, RegexOptions.IgnoreCase);
             Match match = r.Match(s);
             if(match.Success)
