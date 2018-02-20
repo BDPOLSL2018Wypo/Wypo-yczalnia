@@ -23,6 +23,7 @@ namespace Kasety
             db.insertTitle("tytul", "gatunek", "Imie", "Nazwisko", 18, 20);
             db.insertTitle("tytul2", "gatunek2", "Imie2", "Nazwisko2", 18, 20);
             db.insertTitle("tytul3", "gatunek", "Imie", "Nazwisko", 18, 20);
+            db.updateUser(1, "chuj", "dupa", new DateTime(), "kurwa", "cipa", "przejebane", "sladu", "to", "pedal");
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

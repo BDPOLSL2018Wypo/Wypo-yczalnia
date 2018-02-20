@@ -119,6 +119,13 @@ namespace Kasety
             return list;
         }
 
+        public void updateUser(int id, string Imie, string Nazwisko, DateTime DataUrodzenia, string Adres, string Ulica, string KodPocztowy, string Email, string NrTelefonu, string Rola)
+        {
+            string query = "UPDATE OSOBY SET Imie='"+Imie+"', Nazwisko='"+Nazwisko+"', DataUrodzenia='"+ DataUrodzenia.ToString("yyyy-MM-dd")+"', Adres='"+Adres+"', Ulica='"+Ulica+"', KodPocztowy='"+KodPocztowy+"', Email='"+Email+"', NrTel='"+NrTelefonu+"' WHERE IdOsoby='"+id.ToString()+"';";
+            SQLiteCommand command = new SQLiteCommand(query, con);
+            command.ExecuteNonQuery();
+        }
+
         public void insertTitle(string Title, string Gatunek, string RezyserImie, string RezyserNazwisko, int KategoriaWiekowa, int Cena)
         {
             int idGatunku = -1; int idRezysera = -1;
@@ -269,9 +276,27 @@ namespace Kasety
                     "'"+IdListy.ToString()+"', '"+IdKlienta.ToString()+"', '"+now.ToString("yyyy-MM-dd") + "')";
             command = new SQLiteCommand(query, con);
             command.ExecuteNonQuery();
-            
-
             return true;
+        }
+
+        public void OdpierdolOddanieKasety(int IdPracownikaPrzyjmujacego, int idKlienta, List<string> ListaKaset)
+        {
+            int pay=0, price=0, DaysToReturn=0, punishment=0;
+            string query = "SELECT WysokoscKary, IloscDniDoZwrotu FROM USTAWIENIA";
+            SQLiteCommand command = new SQLiteCommand(query, con);
+            SQLiteDataReader reader= command.ExecuteReader();
+            while(reader.Read())
+            {
+                Int32.TryParse(reader["WysokoscKary"].ToString(), out punishment);
+                Int32.TryParse(reader["IloscDniDoZwrotu"].ToString(), out DaysToReturn);
+            }
+
+        }
+
+        public double TwojaStara()
+        {
+            con.Close();
+            return 666.00073;
         }
 
     }
