@@ -203,6 +203,55 @@ namespace Kasety
             return true;
         }
 
+        public void updateCassette(string idkasety, string title, string genre, string name, string lname, int agecat, int price)
+        {
+            string query = "SELECT * FROM Gatunki"; string idgatunku = "", idrezysera = "";
+            SQLiteCommand command = new SQLiteCommand(query, con);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                if (reader["Gatunek"].ToString().Equals(genre)) idgatunku = reader["IdGatunku"].ToString();
+            }
+            if (idgatunku.Length == 0)
+            {
+                query = "INSERT INTO Gatunki (Gatunek) VALUES ('" + genre + "');";
+                command = new SQLiteCommand(query, con);
+                command.ExecuteNonQuery();
+                query = "SELECT * FROM Gatunki";
+                command = new SQLiteCommand(query, con);
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    if (reader["Gatunek"].ToString().Equals(genre)) idgatunku = reader["IdGatunku"].ToString();
+                }
+            }
+
+            query = "SELECT * FROM Rezyserzy";
+            command = new SQLiteCommand(query, con);
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                if (reader["Imie"].ToString().Equals(name) && reader["Nazwisko"].ToString().Equals(lname)) idrezysera = reader["IdRezysera"].ToString();
+            }
+            if (idrezysera.Length == 0)
+            {
+                query = "INSERT INTO Rezyserzy (Imie, Nazwisko) VALUES ('" + name + "','" + lname + "');";
+                command = new SQLiteCommand(query, con);
+                command.ExecuteNonQuery();
+                query = "SELECT * FROM Rezyserzy";
+                command = new SQLiteCommand(query, con);
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    if (reader["Imie"].ToString().Equals(name) && reader["Nazwisko"].ToString().Equals(lname)) idrezysera = reader["IdRezysera"].ToString();
+                }
+            }
+
+            query = "UPDATE Tytuly SET Tytul='" + title + "', IdGatunku='" + idgatunku + "', IdRezysera='" + idrezysera + "', KategoriaWiekowa='" + agecat.ToString() + "', Cena='" + price.ToString() + "' WHERE IdTytulu='" + idkasety + "'";
+            command = new SQLiteCommand(query, con);
+            command.ExecuteNonQuery();
+        }
+
         public List<Cassette> getList()
         {
             string query = "SELECT K.IdKasety,K.Dostepnosc,T.Tytul,T.Cena,T.KategoriaWiekowa,G.Gatunek,R.Imie,R.Nazwisko FROM Kasety K, Tytuly T, Gatunki G, Rezyserzy R WHERE K.IdTytulu=T.IdTytulu AND T.IdGatunku=G.IdGatunku AND T.IdRezysera=R.IdRezysera;";
