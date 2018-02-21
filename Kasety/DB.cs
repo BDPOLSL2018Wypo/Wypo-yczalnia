@@ -6,16 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.Text.RegularExpressions;
 using System.Media;
-/*
- * 
- * Dodawanie userów jest
- * Wyciąganie userów po id jest
- * Dodawanie tytułów jest
- * Tworzenie tabel jest
- * 
- * 
- * 
- * */
+
 namespace Kasety
 {
     class DB
@@ -27,45 +18,55 @@ namespace Kasety
             if (!System.IO.File.Exists("KasetyDB.sqlite"))
             {
                 SQLiteConnection.CreateFile("KasetyDB.sqlite");
+
+                con = new SQLiteConnection("Data Source=KasetyDB.sqlite;Version=3;");
+                con.Open();
+
+                string query = "CREATE TABLE IF NOT EXISTS OSOBY (IdOsoby INTEGER PRIMARY KEY AUTOINCREMENT, Imie varchar(128), Nazwisko varchar(128), DataUrodzenia DateTime, Adres varchar(128), Ulica varchar(128), KodPocztowy varchar(16), Email varchar(128), nrTel varchar(128), Rola varchar(16))";
+                SQLiteCommand command = new SQLiteCommand(query, con);
+                command.ExecuteNonQuery();
+
+                query = "CREATE TABLE IF NOT EXISTS Kasety (IdKasety INTEGER PRIMARY KEY, IdTytulu int(32), Dostepnosc BOOL)";
+                command = new SQLiteCommand(query, con);
+                command.ExecuteNonQuery();
+
+                query = "CREATE TABLE IF NOT EXISTS Tytuly(IdTytulu INTEGER PRIMARY KEY, Tytul varchar(32), IdGatunku INT(32), KategoriaWiekowa INT(32), IdRezysera INT(32), Cena INT(32))";
+                command = new SQLiteCommand(query, con);
+                command.ExecuteNonQuery();
+
+                query = "CREATE TABLE IF NOT EXISTS Rezyserzy(IdRezysera INTEGER PRIMARY KEY, Imie varchar(128), Nazwisko varchar(128))";
+                command = new SQLiteCommand(query, con);
+                command.ExecuteNonQuery();
+
+                query = "CREATE TABLE IF NOT EXISTS Gatunki(IdGatunku INTEGER PRIMARY KEY, Gatunek varchar(128))";
+                command = new SQLiteCommand(query, con);
+                command.ExecuteNonQuery();
+
+                query = "CREATE TABLE IF NOT EXISTS Wypozyczenia(IdWypozyczenia INTEGER PRIMARY KEY, IdPracownikaWypozyczajacego INT(32), IdPracownikaPrzyjmujacego INT(32), IdKlienta INT(32), IdLista INT(32), Data DATETIME)";
+                command = new SQLiteCommand(query, con);
+                command.ExecuteNonQuery();
+
+                query = "CREATE TABLE IF NOT EXISTS ListaKasetWypozyczenia(IdWypozyczenia INTEGER, IdKasety INT(32))";
+                command = new SQLiteCommand(query, con);
+                command.ExecuteNonQuery();
+
+                query = "CREATE TABLE IF NOT EXISTS Kolejka(IdKolejki INTEGER PRIMARY KEY, IdKlienta INT(32), IdTytulu INT(32))";
+                command = new SQLiteCommand(query, con);
+                command.ExecuteNonQuery();
+
+                query = "CREATE TABLE IF NOT EXISTS Ustawienia(IdUstawienia INTEGER PRIMARY KEY, WysokoscKary INT(32), IloscDniDoZwrotu INT(32))";
+                command = new SQLiteCommand(query, con);
+                command.ExecuteNonQuery();
+
+                query = "INSERT INTO Ustawienia (IdUstawienia, WysokoscKary, IloscDniDoZwrotu) VALUES (1, 0, 14)";
+                command = new SQLiteCommand(query, con);
+                command.ExecuteNonQuery();
             }
-            con = new SQLiteConnection("Data Source=KasetyDB.sqlite;Version=3;");
-            con.Open();
-
-            string query = "CREATE TABLE IF NOT EXISTS OSOBY (IdOsoby INTEGER PRIMARY KEY AUTOINCREMENT, Imie varchar(128), Nazwisko varchar(128), DataUrodzenia DateTime, Adres varchar(128), Ulica varchar(128), KodPocztowy varchar(16), Email varchar(128), nrTel varchar(128), Rola varchar(16))";
-            SQLiteCommand command = new SQLiteCommand(query, con);
-            command.ExecuteNonQuery();
-
-            query = "CREATE TABLE IF NOT EXISTS Kasety (IdKasety INTEGER PRIMARY KEY, IdTytulu int(32), Dostepnosc BOOL)";
-            command = new SQLiteCommand(query, con);
-            command.ExecuteNonQuery();
-
-            query = "CREATE TABLE IF NOT EXISTS Tytuly(IdTytulu INTEGER PRIMARY KEY, Tytul varchar(32), IdGatunku INT(32), KategoriaWiekowa INT(32), IdRezysera INT(32), Cena INT(32))";
-            command = new SQLiteCommand(query, con);
-            command.ExecuteNonQuery();
-
-            query = "CREATE TABLE IF NOT EXISTS Rezyserzy(IdRezysera INTEGER PRIMARY KEY, Imie varchar(128), Nazwisko varchar(128))";
-            command = new SQLiteCommand(query, con);
-            command.ExecuteNonQuery();
-
-            query = "CREATE TABLE IF NOT EXISTS Gatunki(IdGatunku INTEGER PRIMARY KEY, Gatunek varchar(128))";
-            command = new SQLiteCommand(query, con);
-            command.ExecuteNonQuery();
-
-            query = "CREATE TABLE IF NOT EXISTS Wypozyczenia(IdWypozyczenia INTEGER PRIMARY KEY, IdPracownikaWypozyczajacego INT(32), IdPracownikaPrzyjmujacego INT(32), IdKlienta INT(32), IdLista INT(32), Data DATETIME)";
-            command = new SQLiteCommand(query, con);
-            command.ExecuteNonQuery();
-
-            query = "CREATE TABLE IF NOT EXISTS ListaKasetWypozyczenia(IdWypozyczenia INTEGER, IdKasety INT(32))";
-            command = new SQLiteCommand(query, con);
-            command.ExecuteNonQuery();
-
-            query = "CREATE TABLE IF NOT EXISTS Kolejka(IdKolejki INTEGER PRIMARY KEY, IdKlienta INT(32), IdTytulu INT(32))";
-            command = new SQLiteCommand(query, con);
-            command.ExecuteNonQuery();
-
-            query = "CREATE TABLE IF NOT EXISTS Ustawienia(IdUstawienia INTEGER PRIMARY KEY, WysokoscKary INT(32), IloscDniDoZwrotu INT(32))";
-            command = new SQLiteCommand(query, con);
-            command.ExecuteNonQuery();
+            else
+            {
+                con = new SQLiteConnection("Data Source=KasetyDB.sqlite;Version=3;");
+                con.Open();
+            }
         }
 
         public void insertUser(string Imie, string Nazwisko, DateTime DataUrodzenia, string Adres, string Ulica, string KodPocztowy, string Email, string NrTelefonu, string Rola)
@@ -350,6 +351,39 @@ namespace Kasety
         {
             con.Close();
             return 666.00073;
+        }
+
+        public void SetSettings(int WysokoscKary, int IloscDniDoZwrotu)
+        {
+            string query = "UPDATE TABLE Ustawienia SET WysokoscKary='"+WysokoscKary.ToString()+"', IloscDniDoZwrotu='"+IloscDniDoZwrotu.ToString()+"' WHERE IdUstawienia=1";
+            SQLiteCommand command = new SQLiteCommand(query, con);
+            command.ExecuteNonQuery();
+        }
+
+        public int getIloscDniDoZwrotu()
+        {
+            int x=0;
+            string query = "GET IloscDniDoZwrotu FROM Ustawienia WHERE IdUstawienia=1";
+            SQLiteCommand command = new SQLiteCommand(query, con);
+            SQLiteDataReader reader= command.ExecuteReader();
+            while (reader.Read())
+            {
+                Int32.TryParse(reader["IloscDniDoZwrotu"].ToString(), out x);
+            }
+            return x;
+        }
+
+        public int getKara()
+        {
+            int x = 0;
+            string query = "GET WysokoscKary FROM Ustawienia WHERE IdUstawienia=1";
+            SQLiteCommand command = new SQLiteCommand(query, con);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Int32.TryParse(reader["WysokoscKary"].ToString(), out x);
+            }
+            return x;
         }
 
         public bool EscapeSQL(string makesurethisshitaintaquery)
