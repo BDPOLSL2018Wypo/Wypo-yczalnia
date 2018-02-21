@@ -57,5 +57,11 @@ namespace Kasety
             UserList form = new UserList();
             form.ShowDialog();
         }
+
+        private void AddUser_Click(object sender, EventArgs e)
+        {
+            AddUser form = new AddUser();
+            form.ShowDialog();
+        }
     }
 }
