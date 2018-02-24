@@ -416,7 +416,7 @@ namespace Kasety
 
         public void SetSettings(int WysokoscKary, int IloscDniDoZwrotu)
         {
-            string query = "UPDATE TABLE Ustawienia SET WysokoscKary='"+WysokoscKary.ToString()+"', IloscDniDoZwrotu='"+IloscDniDoZwrotu.ToString()+"' WHERE IdUstawienia=1";
+            string query = "UPDATE Ustawienia SET WysokoscKary='"+WysokoscKary.ToString()+"', IloscDniDoZwrotu='"+IloscDniDoZwrotu.ToString()+"' WHERE IdUstawienia=1";
             SQLiteCommand command = new SQLiteCommand(query, con);
             command.ExecuteNonQuery();
         }
@@ -424,7 +424,7 @@ namespace Kasety
         public int getIloscDniDoZwrotu()
         {
             int x=0;
-            string query = "GET IloscDniDoZwrotu FROM Ustawienia WHERE IdUstawienia=1";
+            string query = "SELECT IloscDniDoZwrotu FROM Ustawienia WHERE IdUstawienia=1";
             SQLiteCommand command = new SQLiteCommand(query, con);
             SQLiteDataReader reader= command.ExecuteReader();
             while (reader.Read())
@@ -437,7 +437,7 @@ namespace Kasety
         public int getKara()
         {
             int x = 0;
-            string query = "GET WysokoscKary FROM Ustawienia WHERE IdUstawienia=1";
+            string query = "SELECT WysokoscKary FROM Ustawienia WHERE IdUstawienia=1";
             SQLiteCommand command = new SQLiteCommand(query, con);
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -458,6 +458,21 @@ namespace Kasety
             {
                 SystemSounds.Beep.Play();
                 return true;
+            }
+            return false;
+        }
+
+        public bool isAvailable(int id)
+        {
+
+            string query = "SELECT Dostepnosc FROM Kasety WHERE IdKasety=" + id + ";";
+            SQLiteCommand command = new SQLiteCommand(query, con);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                bool av;
+                bool.TryParse(reader["Dostepnosc"].ToString(), out av);
+                return av;
             }
             return false;
         }

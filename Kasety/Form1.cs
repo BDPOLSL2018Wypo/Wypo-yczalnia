@@ -63,5 +63,11 @@ namespace Kasety
             AddUser form = new AddUser();
             form.ShowDialog();
         }
+
+        private void Ustawienia_Click(object sender, EventArgs e)
+        {
+            Settings form = new Settings();
+            form.ShowDialog();
+        }
     }
 }
