@@ -31,7 +31,7 @@ namespace Kasety
 
             List<string> kasty2 = new List<string>(); kasty2.Add("3"); kasty2.Add("4");
             db.OdpierdolWypozyczenie(2, 3, kasty2);
-
+            //db.OdpierdolOddanieKasety(1, 2, 1);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

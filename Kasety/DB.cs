@@ -333,7 +333,7 @@ namespace Kasety
             return true;
         }
 
-        public void OdpierdolOddanieKasety(int IdPracownikaPrzyjmujacego, int idKlienta, List<string> ListaKaset)
+        public ReturnTheCassette OdpierdolOddanieKasety(int IdPracownikaPrzyjmujacego, int idKlienta, int idKasety)
         {
             int pay=0, price=0, DaysToReturn=0, punishment=0;
             string query = "SELECT WysokoscKary, IloscDniDoZwrotu FROM USTAWIENIA";
@@ -344,7 +344,46 @@ namespace Kasety
                 Int32.TryParse(reader["WysokoscKary"].ToString(), out punishment);
                 Int32.TryParse(reader["IloscDniDoZwrotu"].ToString(), out DaysToReturn);
             }
+            query = "SELECT IdTytulu FROM KASETY WHERE IdKasety='" + idKasety + "'";
+            command = new SQLiteCommand(query, con);
+            reader = command.ExecuteReader();
+            string idtytulu = "";
+            while(reader.Read())
+            {
+                idtytulu = reader["IdTytulu"].ToString();
+            }
+            query = "SELECT Cena FROM Tytuly WHERE IdTytulu='" + idtytulu + "'";
+            command = new SQLiteCommand(query, con);
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Int32.TryParse(reader["Cena"].ToString(), out price);
+            }
+            pay += price;
+            query = "UPDATE Kasety SET Dostepnosc=1 WHERE IdKasety='" + idKasety + "'";
+            command = new SQLiteCommand(query, con);
+            command.ExecuteNonQuery();
+            query = "DELETE FROM ListaKasetWypozyczenia WHERE IdKasety='"+idKasety+"'";
+            command = new SQLiteCommand(query, con);
+            command.ExecuteNonQuery();
 
+            int idKlientaWKolejce = 1, tmp=0;
+            query = "SELECT TOP 1 * FROM Kolejka WHERE IdTytulu='"+idtytulu+"'";
+            command = new SQLiteCommand(query, con);
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Int32.TryParse(reader["IdKlineta"].ToString(), out idKlientaWKolejce);
+            }
+
+            return new ReturnTheCassette(pay, 0, idKlientaWKolejce);
+        }
+
+        public void AddClientToQueue(string IdKlienta, string IdTytulu)
+        {
+            string query = "INSERT INTO Kolejka (IdKlienta, IdTytulu) VALUES ('" + IdKlienta + "', '" + IdTytulu + "');";
+            SQLiteCommand command = new SQLiteCommand(query, con);
+            command.ExecuteNonQuery();
         }
 
         public double TwojaStara()
