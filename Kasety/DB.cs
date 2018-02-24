@@ -363,9 +363,31 @@ namespace Kasety
             query = "UPDATE Kasety SET Dostepnosc=1 WHERE IdKasety='" + idKasety + "'";
             command = new SQLiteCommand(query, con);
             command.ExecuteNonQuery();
+
+            int idListyWypozyczenia = 0;
+            query = "SELECT * FROM ListaKasetWyporzyczenia WHERE IdKasety='" + idKasety + "'";
+            command = new SQLiteCommand(query, con);
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Int32.TryParse(reader["IdWypozyczenia"].ToString(), out idListyWypozyczenia);
+            }
             query = "DELETE FROM ListaKasetWypozyczenia WHERE IdKasety='"+idKasety+"'";
             command = new SQLiteCommand(query, con);
             command.ExecuteNonQuery();
+
+            query = "SELECT * FROM Wypozyczenia WHERE IdLista='" + idListyWypozyczenia + "'";
+            command = new SQLiteCommand(query, con);
+            reader = command.ExecuteReader(); DateTime DataWypozyczenia=new DateTime(), teraz; double delay;
+            while (reader.Read())
+            {
+                DataWypozyczenia = DateTime.Parse(reader["Data"].ToString());
+            }
+            teraz = DateTime.Now;
+            delay = (teraz - DataWypozyczenia).TotalDays;
+            delay -= getIloscDniDoZwrotu();
+            if (delay < 0) delay = 0;
+            for (int i = 0; i < delay; i++) pay += punishment;
 
             int idKlientaWKolejce = 1, tmp=0;
             query = "SELECT TOP 1 * FROM Kolejka WHERE IdTytulu='"+idtytulu+"'";
@@ -376,7 +398,7 @@ namespace Kasety
                 Int32.TryParse(reader["IdKlineta"].ToString(), out idKlientaWKolejce);
             }
 
-            return new ReturnTheCassette(pay, 0, idKlientaWKolejce);
+            return new ReturnTheCassette(pay, delay, idKlientaWKolejce);
         }
 
         public void AddClientToQueue(string IdKlienta, string IdTytulu)

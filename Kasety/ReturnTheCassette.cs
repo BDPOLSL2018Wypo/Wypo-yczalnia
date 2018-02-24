@@ -9,9 +9,9 @@ namespace Kasety
     class ReturnTheCassette
     {
         public int price;
-        public int delay;
+        public double delay;
         public int idKlientaWKolejce;
-        public ReturnTheCassette(int Price, int Delay, int IdKlientaWKolejce)
+        public ReturnTheCassette(int Price, double Delay, int IdKlientaWKolejce)
         {
             price = Price;
             delay = Delay;
