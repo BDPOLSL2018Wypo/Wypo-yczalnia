@@ -11,8 +11,8 @@ namespace Kasety
         private int id;
         private string imie,nazwisko, adres, ulica, kodPocztowy, adresEmail, nrTel, rola;
         private DateTime dataUrodzenia;
-        
 
+        public int Id { get => id; set => id = value; }
         public string Nazwisko { get => nazwisko; set => nazwisko = value; }
         public string Imie { get => imie; set => imie = value; }
         public string Adres { get => adres; set => adres = value; }
@@ -22,7 +22,7 @@ namespace Kasety
         public string NrTel { get => nrTel; set => nrTel = value; }
         public string Rola { get => rola; set => rola = value; }
         public DateTime DataUrodzenia { get => dataUrodzenia; set => dataUrodzenia = value; }
-        public int Id { get => id; set => id = value; }
+        
 
         public Person() { }
         public Person(string Name, string Surrname, string Address, string Street, string ZipCode, string PhoneNumber, string Email, string Role, DateTime BirthDate)

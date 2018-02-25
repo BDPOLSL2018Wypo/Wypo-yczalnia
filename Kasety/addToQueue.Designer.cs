@@ -48,23 +48,24 @@
             this.users.FormattingEnabled = true;
             this.users.Location = new System.Drawing.Point(16, 30);
             this.users.Name = "users";
-            this.users.Size = new System.Drawing.Size(121, 21);
+            this.users.Size = new System.Drawing.Size(256, 21);
             this.users.TabIndex = 1;
             // 
             // doQueue
             // 
             this.doQueue.Location = new System.Drawing.Point(16, 58);
             this.doQueue.Name = "doQueue";
-            this.doQueue.Size = new System.Drawing.Size(75, 23);
+            this.doQueue.Size = new System.Drawing.Size(256, 23);
             this.doQueue.TabIndex = 2;
             this.doQueue.Text = "Zakolejkuj";
             this.doQueue.UseVisualStyleBackColor = true;
+            this.doQueue.Click += new System.EventHandler(this.doQueue_Click);
             // 
             // addToQueue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(284, 90);
             this.Controls.Add(this.doQueue);
             this.Controls.Add(this.users);
             this.Controls.Add(this.label1);

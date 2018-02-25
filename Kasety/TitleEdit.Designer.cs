@@ -1,6 +1,6 @@
 ﻿namespace Kasety
 {
-    partial class QueueForm
+    partial class TitleEdit
     {
         /// <summary>
         /// Required designer variable.
@@ -35,21 +35,22 @@
             // TitleList
             // 
             this.TitleList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TitleList.Location = new System.Drawing.Point(12, 12);
+            this.TitleList.Location = new System.Drawing.Point(3, 12);
             this.TitleList.Name = "TitleList";
             this.TitleList.ReadOnly = true;
-            this.TitleList.Size = new System.Drawing.Size(955, 417);
+            this.TitleList.Size = new System.Drawing.Size(1147, 446);
             this.TitleList.TabIndex = 0;
             this.TitleList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TitleList_CellContentClick);
             // 
-            // QueueForm
+            // TitleEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(979, 441);
+            this.ClientSize = new System.Drawing.Size(1162, 470);
             this.Controls.Add(this.TitleList);
-            this.Name = "QueueForm";
-            this.Text = "QueueForm";
+            this.Name = "TitleEdit";
+            this.Text = "TitleEdit";
+            this.Load += new System.EventHandler(this.TitleEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.TitleList)).EndInit();
             this.ResumeLayout(false);
 

@@ -43,11 +43,11 @@
             this.Lista.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.Lista.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.Lista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Lista.Location = new System.Drawing.Point(13, 49);
+            this.Lista.Location = new System.Drawing.Point(12, 88);
             this.Lista.Name = "Lista";
             this.Lista.ReadOnly = true;
             this.Lista.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.Lista.Size = new System.Drawing.Size(312, 189);
+            this.Lista.Size = new System.Drawing.Size(1129, 325);
             this.Lista.TabIndex = 0;
             this.Lista.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Lista_CellContentClick);
             // 
@@ -55,12 +55,12 @@
             // 
             this.title.Location = new System.Drawing.Point(13, 23);
             this.title.Name = "title";
-            this.title.Size = new System.Drawing.Size(100, 20);
+            this.title.Size = new System.Drawing.Size(156, 20);
             this.title.TabIndex = 1;
             // 
             // Finder
             // 
-            this.Finder.Location = new System.Drawing.Point(119, 20);
+            this.Finder.Location = new System.Drawing.Point(13, 49);
             this.Finder.Name = "Finder";
             this.Finder.Size = new System.Drawing.Size(75, 23);
             this.Finder.TabIndex = 2;
@@ -70,7 +70,7 @@
             // 
             // Reset
             // 
-            this.Reset.Location = new System.Drawing.Point(200, 20);
+            this.Reset.Location = new System.Drawing.Point(94, 49);
             this.Reset.Name = "Reset";
             this.Reset.Size = new System.Drawing.Size(75, 23);
             this.Reset.TabIndex = 3;
@@ -88,9 +88,9 @@
             // 
             // wyp
             // 
-            this.wyp.Location = new System.Drawing.Point(12, 296);
+            this.wyp.Location = new System.Drawing.Point(178, 49);
             this.wyp.Name = "wyp";
-            this.wyp.Size = new System.Drawing.Size(156, 23);
+            this.wyp.Size = new System.Drawing.Size(143, 23);
             this.wyp.TabIndex = 5;
             this.wyp.Text = "Wypożycz wybrane tytuły";
             this.wyp.UseVisualStyleBackColor = true;
@@ -99,7 +99,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 267);
+            this.label2.Location = new System.Drawing.Point(175, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(113, 13);
             this.label2.TabIndex = 6;
@@ -110,7 +110,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(878, 367);
+            this.ClientSize = new System.Drawing.Size(1154, 425);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.wyp);
             this.Controls.Add(this.label1);

@@ -37,17 +37,18 @@
             this.list.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.list.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.list.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.list.Location = new System.Drawing.Point(13, 13);
+            this.list.Location = new System.Drawing.Point(13, 12);
             this.list.Name = "list";
             this.list.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.list.Size = new System.Drawing.Size(720, 601);
+            this.list.Size = new System.Drawing.Size(992, 430);
             this.list.TabIndex = 0;
+            this.list.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.list_CellContentClick);
             // 
             // UserList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(847, 353);
+            this.ClientSize = new System.Drawing.Size(1017, 454);
             this.Controls.Add(this.list);
             this.Name = "UserList";
             this.Text = "UserList";

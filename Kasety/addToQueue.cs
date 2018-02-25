@@ -29,10 +29,18 @@ namespace Kasety
 
         private void addToQueue_Load(object sender, EventArgs e)
         {
+            
+            
+            
+        }
+
+        private void doQueue_Click(object sender, EventArgs e)
+        {
             int index = users.SelectedIndex;
             int idU = uzytkownicy[index].Id;
             DB db = new DB();
             db.AddClientToQueue(idU.ToString(), id.ToString());
+            Dispose();
         }
     }
 }

@@ -148,7 +148,7 @@ namespace Kasety
 
         public void updateUser(int id, string Imie, string Nazwisko, DateTime DataUrodzenia, string Adres, string Ulica, string KodPocztowy, string Email, string NrTelefonu, string Rola)
         {
-            string query = "UPDATE OSOBY SET Imie='"+Imie+"', Nazwisko='"+Nazwisko+"', DataUrodzenia='"+ DataUrodzenia.ToString("yyyy-MM-dd")+"', Adres='"+Adres+"', Ulica='"+Ulica+"', KodPocztowy='"+KodPocztowy+"', Email='"+Email+"', NrTel='"+NrTelefonu+"' WHERE IdOsoby='"+id.ToString()+"';";
+            string query = "UPDATE OSOBY SET Imie='"+Imie+"', Nazwisko='"+Nazwisko+"', DataUrodzenia='"+ DataUrodzenia.ToString("yyyy-MM-dd")+"', Adres='"+Adres+"', Ulica='"+Ulica+"', KodPocztowy='"+KodPocztowy+"', Email='"+Email+"', NrTel='"+NrTelefonu+"',Rola='"+Rola+"' WHERE IdOsoby='"+id.ToString()+"';";
             SQLiteCommand command = new SQLiteCommand(query, con);
             command.ExecuteNonQuery();
         }
@@ -373,6 +373,33 @@ namespace Kasety
             }
             return lista;
         }
+        public Title getTitles(int index)
+        {
+            string query = "SELECT T.IdTytulu,T.Tytul,T.Cena,T.KategoriaWiekowa,G.Gatunek,R.Imie,R.Nazwisko FROM Tytuly T, Gatunki G, Rezyserzy R WHERE T.IdTytulu='"+index+"' AND T.IdGatunku=G.IdGatunku AND T.IdRezysera=R.IdRezysera;";
+            Title t = new Title() ;
+            SQLiteCommand command = new SQLiteCommand(query, con);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int id = Int32.Parse(reader["IdTytulu"].ToString());
+
+                t.Titl = reader["Tytul"].ToString();
+                t.Genre = reader["Gatunek"].ToString();
+                
+                t.DirectorName = reader["Imie"].ToString();
+                t.DirectorLastName=reader["Nazwisko"].ToString();
+                int age;
+                Int32.TryParse(reader["KategoriaWiekowa"].ToString(), out age);
+                t.Age = age;
+                int price;
+                Int32.TryParse(reader["Cena"].ToString(), out price);
+                t.Price = price;
+
+                 
+                
+            }
+            return t;
+        }
 
         public bool OdpierdolWypozyczenie(int IdPracownikaWypozyczajacego,
                                           int IdKlienta,
@@ -467,7 +494,7 @@ namespace Kasety
             reader = command.ExecuteReader();
             while (reader.Read())
             {
-                Int32.TryParse(reader["IdKlineta"].ToString(), out idKlientaWKolejce);
+                Int32.TryParse(reader["IdKlienta"].ToString(), out idKlientaWKolejce);
             }
 
             return new ReturnTheCassette(pay, delay, idKlientaWKolejce);

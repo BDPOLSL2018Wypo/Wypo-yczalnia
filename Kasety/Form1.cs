@@ -86,5 +86,11 @@ namespace Kasety
             QueueForm form = new QueueForm();
             form.ShowDialog();
         }
+
+        private void EditTitle_Click(object sender, EventArgs e)
+        {
+            TitleEdit form = new TitleEdit();
+            form.ShowDialog();
+        }
     }
 }
