@@ -33,6 +33,7 @@
             this.ret = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.personel = new System.Windows.Forms.ComboBox();
+            this.nrErr = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -79,11 +80,24 @@
             this.personel.Size = new System.Drawing.Size(178, 21);
             this.personel.TabIndex = 4;
             // 
+            // nrErr
+            // 
+            this.nrErr.AutoSize = true;
+            this.nrErr.ForeColor = System.Drawing.Color.Red;
+            this.nrErr.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.nrErr.Location = new System.Drawing.Point(325, 13);
+            this.nrErr.Name = "nrErr";
+            this.nrErr.Size = new System.Drawing.Size(107, 13);
+            this.nrErr.TabIndex = 5;
+            this.nrErr.Text = "Błędny numer kasety";
+            this.nrErr.Visible = false;
+            // 
             // ReturnCas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(357, 116);
+            this.ClientSize = new System.Drawing.Size(435, 116);
+            this.Controls.Add(this.nrErr);
             this.Controls.Add(this.personel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.ret);
@@ -103,5 +117,6 @@
         private System.Windows.Forms.Button ret;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox personel;
+        private System.Windows.Forms.Label nrErr;
     }
 }

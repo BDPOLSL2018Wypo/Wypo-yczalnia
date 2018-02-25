@@ -33,6 +33,7 @@ namespace Kasety
             string numer = index.Text;
             if (Int32.TryParse(numer, out id))
             {
+                nrErr.Visible = false;
                 DB db = new DB();
                 bool av = db.isAvailable(id);
                 if (!av)
@@ -40,13 +41,20 @@ namespace Kasety
                     int idS = personel.SelectedIndex;
                     ReturnTheCassette cas=db.OdpierdolOddanieKasety(kasjerzy[idS].Id, id);
                     
-                    MessageBox.Show(cas.Delay.ToString()+" "+cas.Price.ToString()+" "+cas.IdKlientaWKolejce.ToString());
+                    MessageBox.Show("Do zapłaty: "+cas.Price.ToString()+" PLN.","Zapłata");
                 }
                 else
                 {
-                    MessageBox.Show("nie mozna zwrocic kasety, ktora jest niewypozyczona...");
+                    MessageBox.Show("Kaseta nie jest wypożyczona.","Pomyłka");
                 }
+                
+                
             }
+            else
+            {
+                nrErr.Visible = true;
+            }
+            index.Text = "";
         }
     }
 }
