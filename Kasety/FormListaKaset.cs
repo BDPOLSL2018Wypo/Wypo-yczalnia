@@ -109,7 +109,10 @@ namespace Kasety
         {
             if (wypo.Count > 0)
             {
-                DB db = new DB();
+                SelectUser form = new SelectUser();
+                form.Wyp = wypo;
+                form.ShowDialog();
+                this.Dispose();
                 
             }
         }

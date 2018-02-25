@@ -8,14 +8,19 @@ namespace Kasety
 {
     class ReturnTheCassette
     {
-        public int price;
-        public double delay;
-        public int idKlientaWKolejce;
+        private int price;
+        private double delay;
+        private int idKlientaWKolejce;
+
+        public int Price { get => price; set => price = value; }
+        public double Delay { get => delay; set => delay = value; }
+        public int IdKlientaWKolejce { get => idKlientaWKolejce; set => idKlientaWKolejce = value; }
+
         public ReturnTheCassette(int Price, double Delay, int IdKlientaWKolejce)
         {
-            price = Price;
-            delay = Delay;
-            idKlientaWKolejce = IdKlientaWKolejce;
+            this.Price = Price;
+            this.Delay = Delay;
+            this.IdKlientaWKolejce = IdKlientaWKolejce;
         }
     }
 }

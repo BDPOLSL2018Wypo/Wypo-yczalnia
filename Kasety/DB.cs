@@ -86,6 +86,7 @@ namespace Kasety
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
+                person.Id = Int32.Parse(reader["IdOsoby"].ToString());
                 person.SetName(reader["Imie"].ToString());
                 person.SetSurrname(reader["Nazwisko"].ToString());
                 person.SetAddress(reader["Adres"].ToString());
@@ -107,6 +108,30 @@ namespace Kasety
             while (reader.Read())
             {
                 Person person = new Person();
+                person.Id = Int32.Parse(reader["IdOsoby"].ToString());
+                person.SetName(reader["Imie"].ToString());
+                person.SetSurrname(reader["Nazwisko"].ToString());
+                person.SetAddress(reader["Adres"].ToString());
+                person.SetStreet(reader["Ulica"].ToString());
+                person.SetZipCode(reader["KodPocztowy"].ToString());
+                person.SetPhoneNumber(reader["nrTel"].ToString());
+                person.SetEmail(reader["Email"].ToString());
+                person.SetRole(reader["Rola"].ToString());
+                person.SetBirthDate(DateTime.Parse(reader["DataUrodzenia"].ToString()));
+                list.Add(person);
+            }
+            return list;
+        }
+        public List<Person> retriveSprzedawcy()
+        {
+            List<Person> list = new List<Person>();
+            string query = "SELECT * FROM OSOBY WHERE Rola='sprzedawca'";
+            SQLiteCommand command = new SQLiteCommand(query, con);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Person person = new Person();
+                person.Id = Int32.Parse(reader["IdOsoby"].ToString());
                 person.SetName(reader["Imie"].ToString());
                 person.SetSurrname(reader["Nazwisko"].ToString());
                 person.SetAddress(reader["Adres"].ToString());
@@ -301,6 +326,30 @@ namespace Kasety
             }
             return lista;
         }
+        public List<Cassette> getKaseta()
+        {
+            string query = "SELECT K.IdKasety,K.Dostepnosc,T.Tytul,T.Cena,T.KategoriaWiekowa,G.Gatunek,R.Imie,R.Nazwisko FROM Kasety K, Tytuly T, Gatunki G, Rezyserzy R WHERE K.IdTytulu=T.IdTytulu AND T.IdGatunku=G.IdGatunku AND T.IdRezysera=R.IdRezysera;";
+            List<Cassette> lista = new List<Cassette>();
+            SQLiteCommand command = new SQLiteCommand(query, con);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int id;
+                Int32.TryParse(reader["IdKasety"].ToString(), out id);
+                string title = reader["Tytul"].ToString();
+                string genre = reader["Gatunek"].ToString();
+                string director = reader["Imie"].ToString() + ' ' + reader["Nazwisko"].ToString();
+                int age;
+                Int32.TryParse(reader["KategoriaWiekowa"].ToString(), out age);
+                int price;
+                Int32.TryParse(reader["Cena"].ToString(), out price);
+                bool av;
+                bool.TryParse(reader["Dostepnosc"].ToString(), out av);
+                Cassette cas = new Cassette(id, title, genre, director, age, price, av);
+                lista.Add(cas);
+            }
+            return lista;
+        }
 
         public bool OdpierdolWypozyczenie(int IdPracownikaWypozyczajacego,
                                           int IdKlienta,
@@ -333,7 +382,7 @@ namespace Kasety
             return true;
         }
 
-        public ReturnTheCassette OdpierdolOddanieKasety(int IdPracownikaPrzyjmujacego, int idKlienta, int idKasety)
+        public ReturnTheCassette OdpierdolOddanieKasety(int IdPracownikaPrzyjmujacego, int idKasety)
         {
             int pay=0, price=0, DaysToReturn=0, punishment=0;
             string query = "SELECT WysokoscKary, IloscDniDoZwrotu FROM USTAWIENIA";
@@ -365,7 +414,7 @@ namespace Kasety
             command.ExecuteNonQuery();
 
             int idListyWypozyczenia = 0;
-            query = "SELECT * FROM ListaKasetWyporzyczenia WHERE IdKasety='" + idKasety + "'";
+            query = "SELECT * FROM ListaKasetWypozyczenia WHERE IdKasety=" + idKasety + "";
             command = new SQLiteCommand(query, con);
             reader = command.ExecuteReader();
             while (reader.Read())
@@ -376,7 +425,7 @@ namespace Kasety
             command = new SQLiteCommand(query, con);
             command.ExecuteNonQuery();
 
-            query = "SELECT * FROM Wypozyczenia WHERE IdLista='" + idListyWypozyczenia + "'";
+            query = "SELECT * FROM Wypozyczenia WHERE IdLista=" + idListyWypozyczenia + "";
             command = new SQLiteCommand(query, con);
             reader = command.ExecuteReader(); DateTime DataWypozyczenia=new DateTime(), teraz; double delay;
             while (reader.Read())
@@ -390,7 +439,7 @@ namespace Kasety
             for (int i = 0; i < delay; i++) pay += punishment;
 
             int idKlientaWKolejce = 1, tmp=0;
-            query = "SELECT TOP 1 * FROM Kolejka WHERE IdTytulu='"+idtytulu+"'";
+            query = "SELECT * FROM Kolejka WHERE IdTytulu="+idtytulu+" LIMIT 1";
             command = new SQLiteCommand(query, con);
             reader = command.ExecuteReader();
             while (reader.Read())

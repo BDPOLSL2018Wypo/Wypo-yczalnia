@@ -45,6 +45,7 @@
             this.Lista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Lista.Location = new System.Drawing.Point(13, 49);
             this.Lista.Name = "Lista";
+            this.Lista.ReadOnly = true;
             this.Lista.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.Lista.Size = new System.Drawing.Size(312, 189);
             this.Lista.TabIndex = 0;

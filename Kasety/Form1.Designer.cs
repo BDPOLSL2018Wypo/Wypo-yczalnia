@@ -34,6 +34,7 @@
             this.List = new System.Windows.Forms.Button();
             this.Users = new System.Windows.Forms.Button();
             this.Settings = new System.Windows.Forms.Button();
+            this.returning = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -87,7 +88,7 @@
             // 
             // Settings
             // 
-            this.Settings.Location = new System.Drawing.Point(140, 148);
+            this.Settings.Location = new System.Drawing.Point(140, 201);
             this.Settings.Name = "Settings";
             this.Settings.Size = new System.Drawing.Size(114, 23);
             this.Settings.TabIndex = 5;
@@ -95,11 +96,22 @@
             this.Settings.UseVisualStyleBackColor = true;
             this.Settings.Click += new System.EventHandler(this.Ustawienia_Click);
             // 
+            // returning
+            // 
+            this.returning.Location = new System.Drawing.Point(140, 148);
+            this.returning.Name = "returning";
+            this.returning.Size = new System.Drawing.Size(114, 23);
+            this.returning.TabIndex = 6;
+            this.returning.Text = "Oddanie";
+            this.returning.UseVisualStyleBackColor = true;
+            this.returning.Click += new System.EventHandler(this.returning_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(317, 345);
+            this.Controls.Add(this.returning);
             this.Controls.Add(this.Settings);
             this.Controls.Add(this.Users);
             this.Controls.Add(this.List);
@@ -109,6 +121,7 @@
             this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -122,6 +135,7 @@
         private System.Windows.Forms.Button List;
         private System.Windows.Forms.Button Users;
         private System.Windows.Forms.Button Settings;
+        private System.Windows.Forms.Button returning;
     }
 }
 

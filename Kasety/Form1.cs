@@ -15,22 +15,22 @@ namespace Kasety
         public Form1()
         {
             InitializeComponent();
-            DB db = new DB();
-            DateTime date = new DateTime(2017, 02, 12);
-            db.insertUser("Imie", "Nazwisko", date, "adres", "ulica", "kodpocztowy", "Email", "997", "kucharz");
-            Person p=db.retriveUser(1);
-            textBox1.Text = p.GetBirthDate().ToString();
-            db.insertTitle("tytul", "gatunek", "Imie", "Nazwisko", 18, 20);
-            db.insertTitle("tytul2", "gatunek2", "Imie2", "Nazwisko2", 18, 20);
-            db.insertTitle("tytul3", "gatunek", "Imie", "Nazwisko", 18, 20);
-            db.updateUser(1, "chuj", "dupa", new DateTime(), "kurwa", "cipa", "przejebane", "sladu", "to", "pedal");
+            //DB db = new DB();
+            //DateTime date = new DateTime(2017, 02, 12);
+            //db.insertUser("Sprzedawca", "Kasjer", date, "Nasza wypozyczalnia", "nie mamy ulicy", "pewnie jakis jest", "Email", "997", "sprzedawca");
+            //Person p=db.retriveUser(1);
+            //textBox1.Text = p.GetBirthDate().ToString();
+            //db.insertTitle("tytul", "gatunek", "Imie", "Nazwisko", 18, 20);
+            //db.insertTitle("tytul2", "gatunek2", "Imie2", "Nazwisko2", 18, 20);
+            //db.insertTitle("tytul3", "gatunek", "Imie", "Nazwisko", 18, 20);
+            //db.updateUser(1, "chuj", "dupa", new DateTime(), "kurwa", "cipa", "przejebane", "sladu", "to", "pedal");
 
-            db.EscapeSQL("uuu drop uuu");
-            List<string> kasty=new List<string>(); kasty.Add("1"); kasty.Add("2");
-            db.OdpierdolWypozyczenie(1, 2, kasty);
+            //db.EscapeSQL("uuu drop uuu");
+            //List<string> kasty=new List<string>(); kasty.Add("1"); kasty.Add("2");
+            //db.OdpierdolWypozyczenie(1, 2, kasty);
 
-            List<string> kasty2 = new List<string>(); kasty2.Add("3"); kasty2.Add("4");
-            db.OdpierdolWypozyczenie(2, 3, kasty2);
+            //List<string> kasty2 = new List<string>(); kasty2.Add("3"); kasty2.Add("4");
+            //db.OdpierdolWypozyczenie(2, 3, kasty2);
             //db.OdpierdolOddanieKasety(1, 2, 1);
         }
 
@@ -67,6 +67,17 @@ namespace Kasety
         private void Ustawienia_Click(object sender, EventArgs e)
         {
             Settings form = new Settings();
+            form.ShowDialog();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void returning_Click(object sender, EventArgs e)
+        {
+            ReturnCas form = new ReturnCas();
             form.ShowDialog();
         }
     }
