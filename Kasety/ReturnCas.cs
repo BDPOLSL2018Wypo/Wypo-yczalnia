@@ -53,7 +53,7 @@ namespace Kasety
                 
                     if (cas.IdKlientaWKolejce > 0)
                     {
-                        wyslij("jakas tresc");
+                        //wyslij("jakas tresc");
                     }
                    
                 }
@@ -78,14 +78,14 @@ namespace Kasety
             smtpClient.EnableSsl = true;
             smtpClient.Port = 587;
             MailMessage message = new MailMessage();//tworzymy wiadomość
-            MailAddress from = new MailAddress("domzur1025@gmail.com", "wypozyczalnia");//adres nadawcy i nazwa nadawcy
+            MailAddress from = new MailAddress("", "");//adres nadawcy i nazwa nadawcy
             
             message.From = from;
-            message.To.Add("nencik666@gmail.com");//adres odbiorcy
+            message.To.Add("");//adres odbiorcy
             message.Subject = "Temat wiadomosci.";//temat wiadomości
             message.Body = tresc; //treść wiadomości
             smtpClient.Host = "smtp.gmail.com"; //host serwera
-            smtpClient.Credentials = new System.Net.NetworkCredential("domzur1025@gmail.com", "FI11235813fi1994");//nazwa nadawcy i hasło
+            smtpClient.Credentials = new System.Net.NetworkCredential("", "");//nazwa nadawcy i hasło
             try
             {
                 smtpClient.SendAsync(message, "nencik666@gmail.com");//nazwa odbiorcy, wysyłamy wiadomość
