@@ -22,8 +22,19 @@ namespace Kasety
 
         private void button1_Click(object sender, EventArgs e)
         {
+            DB db = new DB();
             int kara, dni;
             bool error = false;
+            if (db.EscapeSQL(punish.Text))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
+            if (db.EscapeSQL(days.Text))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
             if (punish.Text.Length == 0)
             {
                 error = true;
@@ -58,7 +69,7 @@ namespace Kasety
 
             if (!error)
             {
-                DB db = new DB();
+                
                 db.SetSettings(kara, dni);
                 Saved.Visible = true;
                 err.Visible = false;

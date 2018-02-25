@@ -30,12 +30,18 @@ namespace Kasety
 
         private void ret_Click(object sender, EventArgs e)
         {
+            DB db = new DB();
             int id;
             string numer = index.Text;
-            if (Int32.TryParse(numer, out id))
+            if (db.EscapeSQL(numer))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                
+            }
+            else if (Int32.TryParse(numer, out id))
             {
                 nrErr.Visible = false;
-                DB db = new DB();
+               
                 bool av = db.isAvailable(id);
                 if (!av)
                 {

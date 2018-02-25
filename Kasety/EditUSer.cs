@@ -39,6 +39,7 @@ namespace Kasety
 
         private void save_Click(object sender, EventArgs e)
         {
+            DB db = new DB();
             bool error = false;
             string Imie = firstname.Text;
             string Nazwisko = lastname.Text;
@@ -52,7 +53,42 @@ namespace Kasety
             string NrTelefonu = phone.Text;
             string Rola = role.Text;
             int tmp;
-
+            if (db.EscapeSQL(Imie))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
+            if (db.EscapeSQL(Nazwisko))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
+            if (db.EscapeSQL(Adres))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
+            if (db.EscapeSQL(KodPocztowy))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
+            if (db.EscapeSQL(Ulica))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
+            if (db.EscapeSQL(Email))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
+            if (db.EscapeSQL(NrTelefonu))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
+           
             if (Imie.Length == 0)
             {
                 ErrName.Visible = true;
@@ -118,7 +154,7 @@ namespace Kasety
 
             if (!error)
             {
-                DB db = new DB();
+                
                 
                 //db.insertUser(Imie, Nazwisko, DataUrodzenia, Adres, Ulica, KodPocztowy, Email, NrTelefonu, Rola);
                 db.updateUser(id, Imie, Nazwisko, DataUrodzenia, Adres, Ulica, KodPocztowy, Email, NrTelefonu, Rola);

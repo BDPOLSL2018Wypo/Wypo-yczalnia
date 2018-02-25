@@ -43,11 +43,11 @@
             this.Lista.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.Lista.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.Lista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Lista.Location = new System.Drawing.Point(12, 88);
+            this.Lista.Location = new System.Drawing.Point(13, 88);
             this.Lista.Name = "Lista";
             this.Lista.ReadOnly = true;
             this.Lista.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.Lista.Size = new System.Drawing.Size(1129, 325);
+            this.Lista.Size = new System.Drawing.Size(1128, 325);
             this.Lista.TabIndex = 0;
             this.Lista.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Lista_CellContentClick);
             // 
@@ -81,7 +81,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(131, 267);
+            this.label1.Location = new System.Drawing.Point(294, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 4;

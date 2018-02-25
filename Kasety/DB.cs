@@ -406,7 +406,7 @@ namespace Kasety
                                           List<string> Kasety)
         {
             DateTime now = new DateTime(); now = DateTime.Now;
-            int IdListy=0, tmp = 0;
+            int IdListy=0;
             string query = "SELECT IdWypozyczenia FROM ListaKasetWypozyczenia";
             SQLiteCommand command = new SQLiteCommand(query, con);
             SQLiteDataReader reader = command.ExecuteReader();
@@ -488,7 +488,7 @@ namespace Kasety
             if (delay < 0) delay = 0;
             for (int i = 0; i < delay; i++) pay += punishment;
 
-            int idKlientaWKolejce = 0, tmp=0;
+            int idKlientaWKolejce = 0;
             query = "SELECT * FROM Kolejka WHERE IdTytulu="+idtytulu+" LIMIT 1";
             command = new SQLiteCommand(query, con);
             reader = command.ExecuteReader();

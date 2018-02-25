@@ -38,6 +38,7 @@ namespace Kasety
 
         private void button1_Click(object sender, EventArgs e)
         {
+            DB db = new DB();
             string title, genre, directorname, directorlastname, price;
             int agecat, iprice;
             bool error = false;
@@ -47,7 +48,31 @@ namespace Kasety
             directorlastname = DirectorLastname.Text;
 
             price = Price.Text;
-
+            if (db.EscapeSQL(title))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
+            if (db.EscapeSQL(genre))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
+            if (db.EscapeSQL(directorname))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
+            if (db.EscapeSQL(directorlastname))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
+            if (db.EscapeSQL(price))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
             if (title.Length == 0)
             {
                 TitleErr.Visible = true;
@@ -100,14 +125,14 @@ namespace Kasety
             if (!error)
             {
 
-                labout.Text = "nie ma błędu";
-                DB db = new DB();
+                
+                
 
                 db.updateCassette(id.ToString(), title, genre, directorname, directorlastname, agecat, iprice);
-                    labout.Text = "umieszczono";
+                    
                 //wywołanie dodania tytułu i kasety;
             }
-            else labout.Text = "jest jakis blad";
+            
             Dispose();
         }
     }

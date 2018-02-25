@@ -35,6 +35,43 @@ namespace Kasety
             string NrTelefonu = phone.Text;
             string Rola = role.Text;
             int tmp;
+            DB db = new DB();
+            if (db.EscapeSQL(Imie))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
+            if (db.EscapeSQL(Nazwisko))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
+            if (db.EscapeSQL(Adres))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
+            if (db.EscapeSQL(Ulica))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
+            if (db.EscapeSQL(KodPocztowy))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
+            if (db.EscapeSQL(Email))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
+            if (db.EscapeSQL(NrTelefonu))
+            {
+                MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                error = true;
+            }
+
 
             if (Imie.Length == 0)
             {
@@ -100,7 +137,7 @@ namespace Kasety
 
             if (!error)
             {
-                DB db = new DB();
+               
                 db.insertUser(Imie, Nazwisko, DataUrodzenia, Adres, Ulica, KodPocztowy, Email, NrTelefonu, Rola);
             }
             

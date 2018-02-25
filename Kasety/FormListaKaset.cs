@@ -41,19 +41,31 @@ namespace Kasety
 
         private void Finder_Click(object sender, EventArgs e)
         {
+            
             DB db = new DB();
             if (title.Text.Length != 0)
             {
                 string tytul = title.Text;
+                if (!db.EscapeSQL(tytul))
+                {
+                    List<Cassette> lista = db.getList(tytul);
+                    Lista.DataSource = lista;
+                }
+                else
+                {
+                    MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
+                    title.Text = "";
+                }
                 
-                List<Cassette> lista = db.getList(tytul);
-                Lista.DataSource = lista;
+                
+                
             }
             else
             {
                 List<Cassette> lista = db.getList();
                 Lista.DataSource = lista;
             }
+
         }
 
         private void Reset_Click(object sender, EventArgs e)
