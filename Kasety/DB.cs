@@ -350,6 +350,29 @@ namespace Kasety
             }
             return lista;
         }
+        public List<Titles> getTitles()
+        {
+            string query = "SELECT T.IdTytulu,T.Tytul,T.Cena,T.KategoriaWiekowa,G.Gatunek,R.Imie,R.Nazwisko FROM Tytuly T, Gatunki G, Rezyserzy R WHERE T.IdGatunku=G.IdGatunku AND T.IdRezysera=R.IdRezysera;";
+            List<Titles> lista = new List<Titles>();
+            SQLiteCommand command = new SQLiteCommand(query, con);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int id = Int32.Parse(reader["IdTytulu"].ToString());
+                
+                string title = reader["Tytul"].ToString();
+                string genre = reader["Gatunek"].ToString();
+                string director = reader["Imie"].ToString() + ' ' + reader["Nazwisko"].ToString();
+                int age;
+                Int32.TryParse(reader["KategoriaWiekowa"].ToString(), out age);
+                int price;
+                Int32.TryParse(reader["Cena"].ToString(), out price);
+                
+                Titles cas = new Titles(id, title, genre, director, age, price);
+                lista.Add(cas);
+            }
+            return lista;
+        }
 
         public bool OdpierdolWypozyczenie(int IdPracownikaWypozyczajacego,
                                           int IdKlienta,
@@ -438,7 +461,7 @@ namespace Kasety
             if (delay < 0) delay = 0;
             for (int i = 0; i < delay; i++) pay += punishment;
 
-            int idKlientaWKolejce = 1, tmp=0;
+            int idKlientaWKolejce = 0, tmp=0;
             query = "SELECT * FROM Kolejka WHERE IdTytulu="+idtytulu+" LIMIT 1";
             command = new SQLiteCommand(query, con);
             reader = command.ExecuteReader();
@@ -524,6 +547,26 @@ namespace Kasety
                 return av;
             }
             return false;
+        }
+
+        public bool isAvailableByTitle(int id)
+        {
+
+            string query = "SELECT Dostepnosc FROM Kasety WHERE IdTytulu=" + id + ";";
+            SQLiteCommand command = new SQLiteCommand(query, con);
+            SQLiteDataReader reader = command.ExecuteReader();
+            bool av=false;
+            while (reader.Read())
+            {
+                if (bool.Parse(reader["Dostepnosc"].ToString()) == true)
+                {
+                    av = true;
+                }
+                
+                
+            }
+            return av;
+            
         }
 
     }

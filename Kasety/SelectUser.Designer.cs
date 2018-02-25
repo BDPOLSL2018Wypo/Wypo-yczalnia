@@ -104,6 +104,7 @@
             this.Controls.Add(this.ListaUzytkownikow);
             this.Name = "SelectUser";
             this.Text = "SelectUser";
+            this.Load += new System.EventHandler(this.SelectUser_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

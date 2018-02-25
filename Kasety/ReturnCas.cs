@@ -42,6 +42,11 @@ namespace Kasety
                     ReturnTheCassette cas=db.OdpierdolOddanieKasety(kasjerzy[idS].Id, id);
                     
                     MessageBox.Show("Do zapłaty: "+cas.Price.ToString()+" PLN.","Zapłata");
+                    if (cas.IdKlientaWKolejce > 0)
+                    {
+
+                    }
+                   
                 }
                 else
                 {

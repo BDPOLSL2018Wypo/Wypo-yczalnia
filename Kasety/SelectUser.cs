@@ -63,5 +63,10 @@ namespace Kasety
         {
 
         }
+
+        private void SelectUser_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -80,5 +80,11 @@ namespace Kasety
             ReturnCas form = new ReturnCas();
             form.ShowDialog();
         }
+
+        private void Queue_Click(object sender, EventArgs e)
+        {
+            QueueForm form = new QueueForm();
+            form.ShowDialog();
+        }
     }
 }

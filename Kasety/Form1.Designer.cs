@@ -35,6 +35,7 @@
             this.Users = new System.Windows.Forms.Button();
             this.Settings = new System.Windows.Forms.Button();
             this.returning = new System.Windows.Forms.Button();
+            this.Queue = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -88,7 +89,7 @@
             // 
             // Settings
             // 
-            this.Settings.Location = new System.Drawing.Point(140, 201);
+            this.Settings.Location = new System.Drawing.Point(140, 207);
             this.Settings.Name = "Settings";
             this.Settings.Size = new System.Drawing.Size(114, 23);
             this.Settings.TabIndex = 5;
@@ -106,11 +107,22 @@
             this.returning.UseVisualStyleBackColor = true;
             this.returning.Click += new System.EventHandler(this.returning_Click);
             // 
+            // Queue
+            // 
+            this.Queue.Location = new System.Drawing.Point(140, 178);
+            this.Queue.Name = "Queue";
+            this.Queue.Size = new System.Drawing.Size(114, 23);
+            this.Queue.TabIndex = 7;
+            this.Queue.Text = "Kolejka";
+            this.Queue.UseVisualStyleBackColor = true;
+            this.Queue.Click += new System.EventHandler(this.Queue_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(317, 345);
+            this.Controls.Add(this.Queue);
             this.Controls.Add(this.returning);
             this.Controls.Add(this.Settings);
             this.Controls.Add(this.Users);
@@ -136,6 +148,7 @@
         private System.Windows.Forms.Button Users;
         private System.Windows.Forms.Button Settings;
         private System.Windows.Forms.Button returning;
+        private System.Windows.Forms.Button Queue;
     }
 }
 

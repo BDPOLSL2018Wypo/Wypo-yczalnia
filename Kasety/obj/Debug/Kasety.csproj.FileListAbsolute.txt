@@ -46,3 +46,5 @@ C:\Users\krzyc\Desktop\kasety\Kasety\obj\Debug\Kasety.AddUser.resources
 C:\Users\Dominik\source\wypo\Kasety\obj\Debug\Kasety.Settings.resources
 C:\Users\Dominik\source\wypo\Kasety\obj\Debug\Kasety.SelectUser.resources
 C:\Users\Dominik\source\wypo\Kasety\obj\Debug\Kasety.ReturnCas.resources
+C:\Users\Dominik\source\wypo\Kasety\obj\Debug\Kasety.QueueForm.resources
+C:\Users\Dominik\source\wypo\Kasety\obj\Debug\Kasety.addToQueue.resources
