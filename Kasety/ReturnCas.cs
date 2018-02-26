@@ -40,7 +40,7 @@ namespace Kasety
             }
             else if (personel.Text == "")
             {
-                MessageBox.Show("Bran kasjera do obsługi.");
+                MessageBox.Show("Brak kasjera do obsługi.");
             }
             else if (Int32.TryParse(numer, out id))
             {

@@ -51,3 +51,11 @@ C:\Users\Dominik\source\wypo\Kasety\obj\Debug\Kasety.addToQueue.resources
 C:\Users\Dominik\source\wypo\Kasety\obj\Debug\Kasety.EditUser.resources
 C:\Users\Dominik\source\wypo\Kasety\obj\Debug\Kasety.doEditTitle.resources
 C:\Users\Dominik\source\wypo\Kasety\obj\Debug\Kasety.TitleEdit.resources
+C:\Users\krzyc\Desktop\Kasety\Kasety\obj\Debug\Kasety.addToQueue.resources
+C:\Users\krzyc\Desktop\Kasety\Kasety\obj\Debug\Kasety.doEditTitle.resources
+C:\Users\krzyc\Desktop\Kasety\Kasety\obj\Debug\Kasety.EditUser.resources
+C:\Users\krzyc\Desktop\Kasety\Kasety\obj\Debug\Kasety.QueueForm.resources
+C:\Users\krzyc\Desktop\Kasety\Kasety\obj\Debug\Kasety.ReturnCas.resources
+C:\Users\krzyc\Desktop\Kasety\Kasety\obj\Debug\Kasety.SelectUser.resources
+C:\Users\krzyc\Desktop\Kasety\Kasety\obj\Debug\Kasety.Settings.resources
+C:\Users\krzyc\Desktop\Kasety\Kasety\obj\Debug\Kasety.TitleEdit.resources
