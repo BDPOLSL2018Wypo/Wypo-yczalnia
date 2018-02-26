@@ -55,7 +55,6 @@
             this.ErrStr = new System.Windows.Forms.Label();
             this.ErrPhone = new System.Windows.Forms.Label();
             this.ErrEmail = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -304,14 +303,6 @@
             this.ErrEmail.Text = "Błędny email";
             this.ErrEmail.Visible = false;
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(256, 296);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(0, 13);
-            this.label10.TabIndex = 66;
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -328,7 +319,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(375, 330);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
             this.Controls.Add(this.ErrPhone);
             this.Controls.Add(this.ErrEmail);
             this.Controls.Add(this.ErrPost);
@@ -392,7 +382,6 @@
         private System.Windows.Forms.Label ErrStr;
         private System.Windows.Forms.Label ErrPhone;
         private System.Windows.Forms.Label ErrEmail;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
     }
 }

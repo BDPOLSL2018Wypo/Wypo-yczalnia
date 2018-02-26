@@ -118,12 +118,12 @@ namespace Kasety
             {
                 
                 labout.Text = "nie ma błędu";
+
+                db.InsertCassette(title, genre, directorname, directorlastname, agecat, iprice);
                 
-                if (db.InsertCassette(title, genre, directorname, directorlastname, agecat, iprice))
-                    labout.Text = "umieszczono";
                 //wywołanie dodania tytułu i kasety;
             }
-            else labout.Text = "jest jakis blad";
+            
            
         }
     }

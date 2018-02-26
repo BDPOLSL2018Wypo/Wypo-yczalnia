@@ -39,7 +39,7 @@ namespace Kasety
                 int id = list[index].Id;
                 if (db.isAvailableByTitle(id))
                 {
-                    MessageBox.Show("dostępne patałachu! "+list[index].Title);
+                    MessageBox.Show("Wybrany tytuł jest dostępny.");
                 }
                 else
                 {
