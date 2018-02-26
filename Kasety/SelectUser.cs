@@ -43,20 +43,30 @@ namespace Kasety
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<string> kasety = new List<string>();
-            int indexU = ListaUzytkownikow.SelectedIndex;
-            int indexS = Personel.SelectedIndex;
-            //string s = "Użytkownik: " + persons[indexU].Id + " " + persons[indexU].Imie + " " + persons[indexU].Nazwisko + " Sprzedawca: " + kasjerzy[indexS].Id + " " + kasjerzy[indexS].Imie + " " + kasjerzy[indexS].Nazwisko;
-           // MessageBox.Show(s);
-            foreach (int i in wyp)
+            if (ListaUzytkownikow.Text.Length == 0)
             {
-                kasety.Add(i.ToString());
+                MessageBox.Show("Brak użytkownika do wypożyczenia");
             }
-            DB db = new DB();
-            db.OdpierdolWypozyczenie(kasjerzy[indexS].Id, persons[indexU].Id, kasety);
-            FormListaKaset form = new FormListaKaset();
-            form.Show();
-            this.Dispose();
+            else if (Personel.Text.Length==0)
+            {
+                MessageBox.Show("Brak kasjera do obsługi");
+            }
+            else
+            {
+                List<string> kasety = new List<string>();
+                int indexU = ListaUzytkownikow.SelectedIndex;
+                int indexS = Personel.SelectedIndex;
+                //string s = "Użytkownik: " + persons[indexU].Id + " " + persons[indexU].Imie + " " + persons[indexU].Nazwisko + " Sprzedawca: " + kasjerzy[indexS].Id + " " + kasjerzy[indexS].Imie + " " + kasjerzy[indexS].Nazwisko;
+                // MessageBox.Show(s);
+                foreach (int i in wyp)
+                {
+                    kasety.Add(i.ToString());
+                }
+                DB db = new DB();
+                db.Wypozyczenie(kasjerzy[indexS].Id, persons[indexU].Id, kasety);
+                
+                this.Dispose();
+            }
         }
 
         private void label3_Click(object sender, EventArgs e)

@@ -14,6 +14,7 @@ namespace Kasety
     public partial class FormListaKaset : Form
     {
         List<int> wypo = new List<int>();
+        List<Cassette> lista;
         public FormListaKaset()
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace Kasety
             //Lista.Height = this.Height;
            
             DB db = new DB();
-            List<Cassette> lista = db.getList();
+            lista = db.getList();
             Lista.DataSource = lista;
             DataGridViewButtonColumn col1 = new DataGridViewButtonColumn();
             col1.HeaderText = "";
@@ -124,8 +125,13 @@ namespace Kasety
                 SelectUser form = new SelectUser();
                 form.Wyp = wypo;
                 form.ShowDialog();
-                this.Dispose();
-                
+                DB db = new DB();
+                lista = db.getList();
+                Lista.DataSource = lista;
+                wypo = new List<int>();
+                label1.Text = "";
+                title.Text = "";
+
             }
         }
     }

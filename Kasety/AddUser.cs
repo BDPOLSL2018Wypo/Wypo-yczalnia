@@ -139,6 +139,7 @@ namespace Kasety
             {
                
                 db.insertUser(Imie, Nazwisko, DataUrodzenia, Adres, Ulica, KodPocztowy, Email, NrTelefonu, Rola);
+                Dispose();
             }
             
         }

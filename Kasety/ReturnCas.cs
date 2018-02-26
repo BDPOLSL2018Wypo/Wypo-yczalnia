@@ -38,6 +38,10 @@ namespace Kasety
                 MessageBox.Show("Nie tolerujemy SQLInjection!", "SQLInjection");
                 
             }
+            else if (personel.Text == "")
+            {
+                MessageBox.Show("Bran kasjera do obsługi.");
+            }
             else if (Int32.TryParse(numer, out id))
             {
                 nrErr.Visible = false;
@@ -46,7 +50,7 @@ namespace Kasety
                 if (!av)
                 {
                     int idS = personel.SelectedIndex;
-                    ReturnTheCassette cas=db.OdpierdolOddanieKasety(kasjerzy[idS].Id, id);
+                    ReturnTheCassette cas=db.Oddanie(kasjerzy[idS].Id, id);
                     
                     MessageBox.Show("Do zapłaty: "+cas.Price.ToString()+" PLN.","Zapłata");
                     

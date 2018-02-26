@@ -35,7 +35,7 @@ namespace Kasety
             {
                 int index = e.RowIndex;
                 int id = lista[index].Id;
-                MessageBox.Show(id.ToString());
+                
                 EditUser form = new EditUser();
                 form.id = id;
                 form.ShowDialog();

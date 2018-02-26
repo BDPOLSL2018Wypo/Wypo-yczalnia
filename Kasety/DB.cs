@@ -125,7 +125,7 @@ namespace Kasety
         public List<Person> retriveSprzedawcy()
         {
             List<Person> list = new List<Person>();
-            string query = "SELECT * FROM OSOBY WHERE Rola='sprzedawca'";
+            string query = "SELECT * FROM OSOBY WHERE Rola='Pracownik'";
             SQLiteCommand command = new SQLiteCommand(query, con);
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -401,7 +401,7 @@ namespace Kasety
             return t;
         }
 
-        public bool OdpierdolWypozyczenie(int IdPracownikaWypozyczajacego,
+        public bool Wypozyczenie(int IdPracownikaWypozyczajacego,
                                           int IdKlienta,
                                           List<string> Kasety)
         {
@@ -432,7 +432,7 @@ namespace Kasety
             return true;
         }
 
-        public ReturnTheCassette OdpierdolOddanieKasety(int IdPracownikaPrzyjmujacego, int idKasety)
+        public ReturnTheCassette Oddanie(int IdPracownikaPrzyjmujacego, int idKasety)
         {
             int pay=0, price=0, DaysToReturn=0, punishment=0;
             string query = "SELECT WysokoscKary, IloscDniDoZwrotu FROM USTAWIENIA";
